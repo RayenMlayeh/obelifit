@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ObéliFit - Coaching Personnalisé</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/coaching.css">
+</head>
+<body>
+    <!-- HEADER -->
+    <header>
+        <h1 class="logo">Obéli<span>Fit</span></h1>
+    </header>
+
+    <!-- PROGRESS BAR -->
+    <div class="progress-container">
+        <div class="progress-content">
+            <div class="progress-header">
+                <div>
+                    <h2 class="progress-title">Programme d'Entraînement Personnalisé</h2>
+                    <p class="progress-subtitle">En partenariat avec Decathlon</p>
+                </div>
+                <button id="restart-btn" class="btn-restart" style="display: none;">
+                    <span>←</span> Recommencer
+                </button>
+            </div>
+            
+            <div class="progress-steps">
+                <div class="step-labels">
+                    <span class="step-label active" data-step="1">Étape 1: Ton Profil</span>
+                    <span class="step-label" data-step="2">Étape 2: Tes Exercices</span>
+                </div>
+                <div class="progress-bar-track">
+                    <div class="progress-bar-fill" id="progress-bar"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div class="main-container">
+        <!-- STEP 1: PROFILE FORM -->
+        <div id="step-1" class="step-content active">
+            <div class="form-container">
+                <div class="village-card">
+                    <div class="card-header">
+                        <h2 class="village-title">Créez Votre Profil</h2>
+                        <p class="village-subtitle">Répondez à quelques questions pour un programme d'entraînement sur-mesure</p>
+                    </div>
+
+                    <form id="profile-form" class="village-form">
+                        <!-- Niveau d'expérience -->
+                        <div class="form-section">
+                            <label class="section-label">Niveau d'Expérience</label>
+                            <div class="options-grid three-cols">
+                                <button type="button" class="option-btn" data-field="level" data-value="Débutant">
+                                    Débutant
+                                </button>
+                                <button type="button" class="option-btn" data-field="level" data-value="Intermédiaire">
+                                    Intermédiaire
+                                </button>
+                                <button type="button" class="option-btn" data-field="level" data-value="Avancé">
+                                    Avancé
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Sports pratiqués -->
+                        <div class="form-section">
+                            <label class="section-label">Sports Pratiqués (plusieurs choix possibles)</label>
+                            <div class="options-grid two-cols">
+                                <button type="button" class="option-btn multi" data-field="sports" data-value="Musculation">
+                                    Musculation
+                                </button>
+                                <button type="button" class="option-btn multi" data-field="sports" data-value="Course">
+                                    Course à pied
+                                </button>
+                                <button type="button" class="option-btn multi" data-field="sports" data-value="Yoga">
+                                    Yoga
+                                </button>
+                                <button type="button" class="option-btn multi" data-field="sports" data-value="Fitness">
+                                    Fitness
+                                </button>
+                                <button type="button" class="option-btn multi" data-field="sports" data-value="Cross-training">
+                                    Cross-training
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Blessures -->
+                        <div class="form-section">
+                            <label class="section-label">Zones Sensibles ou Blessures</label>
+                            <div class="options-grid two-cols">
+                                <button type="button" class="option-btn" data-field="injuries" data-value="Dos">
+                                    Dos
+                                </button>
+                                <button type="button" class="option-btn" data-field="injuries" data-value="Genoux">
+                                    Genoux
+                                </button>
+                                <button type="button" class="option-btn" data-field="injuries" data-value="Épaules">
+                                    Épaules
+                                </button>
+                                <button type="button" class="option-btn" data-field="injuries" data-value="Aucun">
+                                    Aucun
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Objectifs -->
+                        <div class="form-section">
+                            <label class="section-label">Objectifs (plusieurs choix possibles)</label>
+                            <div class="options-grid two-cols">
+                                <button type="button" class="option-btn multi" data-field="objectives" data-value="Force">
+                                    Force
+                                </button>
+                                <button type="button" class="option-btn multi" data-field="objectives" data-value="Mobilité">
+                                    Mobilité
+                                </button>
+                                <button type="button" class="option-btn multi" data-field="objectives" data-value="Perte de poids">
+                                    Perte de poids
+                                </button>
+                                <button type="button" class="option-btn multi" data-field="objectives" data-value="Posture">
+                                    Posture
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Fréquence -->
+                        <div class="form-section">
+                            <label class="section-label">Fréquence d'Entraînement</label>
+                            <div class="options-grid two-cols">
+                                <button type="button" class="option-btn" data-field="frequency" data-value="Rarement">
+                                    Rarement
+                                </button>
+                                <button type="button" class="option-btn" data-field="frequency" data-value="1–2/semaine">
+                                    1–2/semaine
+                                </button>
+                                <button type="button" class="option-btn" data-field="frequency" data-value="3–4/semaine">
+                                    3–4/semaine
+                                </button>
+                                <button type="button" class="option-btn" data-field="frequency" data-value="5+/semaine">
+                                    5+/semaine
+                                </button>
+                            </div>
+                        </div>
+
+                        <button type="submit" id="submit-profile" class="btn primary btn-large" disabled>
+                            Voir mes Exercices Personnalisés
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!-- STEP 2: RECOMMENDATIONS AND EXERCISES -->
+        <div id="step-2" class="step-content">
+            <!-- Personalized Recommendations -->
+            <div class="recommendations-section">
+                <div class="village-card">
+                    <h2 class="village-title">Votre Programme Personnalisé</h2>
+                    <p class="village-subtitle">Recommandations adaptées à votre profil</p>
+                    
+                    <div id="recommendations-content" class="recommendations-content">
+                        <!-- Dynamic recommendations will be loaded here -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- All Available Exercises -->
+            <div class="movements-header" style="margin-top: 40px;">
+                <h2 class="village-title">Exercices Disponibles</h2>
+                <p class="village-subtitle">Cliquez sur un exercice pour voir la démonstration et les instructions</p>
+            </div>
+
+            <div id="movements-grid" class="movements-grid">
+                <!-- Movements will be dynamically loaded here -->
+            </div>
+        </div>
+
+        <!-- EXERCISE MODAL -->
+        <div id="exercise-modal" class="modal-overlay">
+            <div class="modal-content">
+                <button id="close-modal" class="modal-close">✕</button>
+
+                <div class="instructions-container">
+                <!-- Left: Instructions -->
+                <div class="instructions-left">
+                    <div class="village-card">
+                        <div id="movement-header" class="movement-header">
+                            <!-- Dynamic content -->
+                        </div>
+
+                        <div class="instructions-section">
+                            <h3 class="instructions-title">Instructions Personnalisées</h3>
+                            <ul id="instructions-list" class="instructions-list">
+                                <!-- Dynamic content -->
+                            </ul>
+                        </div>
+
+                        <div class="potion-tip">
+                            <p><strong>Conseil:</strong> Commencez doucement et écoutez votre corps. La progression est plus importante que la vitesse.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right: Demonstration & Products -->
+                <div class="instructions-right">
+                    <div class="village-card">
+                        <h3 class="instructions-title">Démonstration</h3>
+                        
+                        <div class="demo-container">
+                            <div class="demo-good">
+                                <img id="demo-image" src="" alt="Démonstration exercice" class="demo-image">
+                                <p class="demo-label">Bonne exécution</p>
+                            </div>
+                            
+                            <div class="demo-bad">
+                                <div class="demo-icon">⚠</div>
+                                <p class="demo-text">Erreur courante: Contrôlez votre posture et ne forcez pas trop</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Products Recommendation -->
+                    <div class="village-card" id="products-section">
+                        <div class="products-header">
+                            <h3 class="instructions-title">Équipement Recommandé par Decathlon</h3>
+                            <p class="products-subtitle">Équipement pour optimiser votre pratique</p>
+                        </div>
+
+                        <div id="product-display" class="product-display">
+                            <!-- Dynamic product content -->
+                        </div>
+
+                        <div class="product-controls">
+                            <button id="prev-product" class="product-nav-btn">
+                                ←
+                            </button>
+                            <span id="product-counter" class="product-counter">1 / 3</span>
+                            <button id="next-product" class="product-nav-btn">
+                                →
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="../js/coaching-data.js"></script>
+    <script src="../js/coaching.js"></script>
+</body>
+</html>

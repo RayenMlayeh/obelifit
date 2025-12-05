@@ -101,6 +101,28 @@ header {
     font-size: 1rem;
     line-height: 1.4;
 }
+
+.exercise-card > div {
+    flex: 1;
+}
+
+.exercise-btn {
+    display: inline-block;
+    margin-top: 15px;
+    padding: 12px 25px;
+    background: #FFB703;
+    color: #000;
+    text-decoration: none;
+    border-radius: 10px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.exercise-btn:hover {
+    background: #FDAF01;
+    transform: scale(1.05);
+}
+
 body {
     font-family: 'Poppins', sans-serif;
     color: #fff;

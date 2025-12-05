@@ -1,0 +1,268 @@
+{
+  "title": "Questionnaire - CTO de ta santé posturale",
+  "description": "Configure ton profil sportif comme un système : détecte tes bugs posturaux, optimise tes performances et déploie la meilleure version de toi-même !",
+  "questions": [
+    {
+      "id": "niveau_activite",
+      "label": "🔧 Quel est ton niveau d'activité physique actuel ?",
+      "type": "single",
+      "options": [
+        { 
+          "label": "Mode veille : je bouge très peu, je suis souvent assis(e)", 
+          "value": "debutant", 
+          "tags": ["faible_experience", "sedentaire"]
+        },
+        { 
+          "label": "Version 1.0 : je fais un peu de sport, de temps en temps", 
+          "value": "intermediaire", 
+          "tags": ["experience_moyenne", "regulier"]
+        },
+        { 
+          "label": "Version 2.0 optimisée : je m'entraîne régulièrement (3-5x/semaine)", 
+          "value": "avance", 
+          "tags": ["experience_forte", "assidu"]
+        }
+      ]
+    },
+    {
+      "id": "contexte_quotidien",
+      "label": "💻 Quelle est ta configuration quotidienne ?",
+      "type": "single",
+      "options": [
+        { 
+          "label": "Mode bureau : je travaille assis(e) la plupart du temps", 
+          "value": "assis", 
+          "tags": ["sedentaire", "risque_dos", "posture_assise"]
+        },
+        { 
+          "label": "Mode hybride : je bouge un peu, mais je reste souvent statique", 
+          "value": "mixte", 
+          "tags": ["moderement_actif", "posture_variable"]
+        },
+        { 
+          "label": "Mode actif : je suis debout ou en mouvement une bonne partie de la journée", 
+          "value": "debout", 
+          "tags": ["actif", "fatigue_jambes"]
+        }
+      ]
+    },
+    {
+      "id": "sports_pratiques",
+      "label": "🏃 Quels modules sportifs as-tu déjà installés ? (choix multiples)",
+      "type": "multi",
+      "options": [
+        { 
+          "label": "Musculation / Fitness", 
+          "value": "musculation", 
+          "tags": ["force", "renforcement"]
+        },
+        { 
+          "label": "Course à pied / Running", 
+          "value": "running", 
+          "tags": ["cardio", "impact", "endurance"]
+        },
+        { 
+          "label": "Yoga / Pilates", 
+          "value": "yoga", 
+          "tags": ["souplesse", "posture", "equilibre"]
+        },
+        { 
+          "label": "Sports collectifs (foot, basket, volley...)", 
+          "value": "collectif", 
+          "tags": ["explosif", "lateral", "cardio"]
+        },
+        { 
+          "label": "Natation", 
+          "value": "natation", 
+          "tags": ["cardio", "faible_impact", "complet"]
+        },
+        { 
+          "label": "Cyclisme / Vélo", 
+          "value": "velo", 
+          "tags": ["cardio", "endurance", "bas_du_corps"]
+        },
+        { 
+          "label": "Aucun pour le moment", 
+          "value": "aucun", 
+          "tags": ["debutant"]
+        }
+      ]
+    },
+    {
+      "id": "objectifs",
+      "label": "🎯 Quels sont tes objectifs principaux ? (choix multiples)",
+      "type": "multi",
+      "options": [
+        { 
+          "label": "Débugger mes douleurs et améliorer ma posture", 
+          "value": "posture", 
+          "tags": ["prevention", "posture", "reeducation"]
+        },
+        { 
+          "label": "Optimiser mes performances sportives", 
+          "value": "performance", 
+          "tags": ["progression", "intensite"]
+        },
+        { 
+          "label": "Installer de nouvelles routines bien-être", 
+          "value": "bien_etre", 
+          "tags": ["equilibre", "sante_mentale"]
+        },
+        { 
+          "label": "Compiler de la masse musculaire", 
+          "value": "masse", 
+          "tags": ["force", "volume"]
+        },
+        { 
+          "label": "Lancer un programme perte de poids", 
+          "value": "perte_poids", 
+          "tags": ["cardio", "deficit"]
+        },
+        { 
+          "label": "Patcher mes blessures et récupérer", 
+          "value": "reeducation", 
+          "tags": ["prevention", "guerison", "reeducation"]
+        }
+      ]
+    },
+    {
+      "id": "douleurs",
+      "label": "⚠️ As-tu des zones sensibles ou des alertes système ? (choix multiples)",
+      "type": "multi",
+      "options": [
+        { 
+          "label": "Bas du dos (lombaires)", 
+          "value": "dos_bas", 
+          "tags": ["douleur", "dos", "lombaires"]
+        },
+        { 
+          "label": "Haut du dos / Nuque", 
+          "value": "dos_haut", 
+          "tags": ["douleur", "cervicales", "trapeze"]
+        },
+        { 
+          "label": "Épaules", 
+          "value": "epaules", 
+          "tags": ["douleur", "articulation", "haut_corps"]
+        },
+        { 
+          "label": "Genoux", 
+          "value": "genoux", 
+          "tags": ["douleur", "articulation", "bas_corps"]
+        },
+        { 
+          "label": "Chevilles / Pieds", 
+          "value": "chevilles", 
+          "tags": ["douleur", "stabilite", "bas_corps"]
+        },
+        { 
+          "label": "Hanches", 
+          "value": "hanches", 
+          "tags": ["douleur", "mobilite", "bas_corps"]
+        },
+        { 
+          "label": "Aucune douleur particulière", 
+          "value": "aucune", 
+          "tags": ["sain"]
+        }
+      ]
+    },
+    {
+      "id": "materiel",
+      "label": "🛠️ Quel équipement as-tu dans ton setup ?",
+      "type": "multi",
+      "options": [
+        { 
+          "label": "Tapis de sol", 
+          "value": "tapis", 
+          "tags": ["confort", "base"]
+        },
+        { 
+          "label": "Haltères / Poids", 
+          "value": "halteres", 
+          "tags": ["resistance", "force"]
+        },
+        { 
+          "label": "Bandes élastiques", 
+          "value": "bandes", 
+          "tags": ["resistance", "mobilite"]
+        },
+        { 
+          "label": "Barre de traction", 
+          "value": "barre_traction", 
+          "tags": ["force", "haut_corps"]
+        },
+        { 
+          "label": "Swiss ball / Ballon", 
+          "value": "ballon", 
+          "tags": ["equilibre", "gainage"]
+        },
+        { 
+          "label": "Rien du tout, juste mon corps !", 
+          "value": "aucun", 
+          "tags": ["poids_corps"]
+        }
+      ]
+    },
+    {
+      "id": "frequence_souhaitee",
+      "label": "⏱️ Combien de fois par semaine veux-tu t'entraîner ?",
+      "type": "single",
+      "options": [
+        { 
+          "label": "1-2 fois : je démarre en douceur", 
+          "value": "leger", 
+          "tags": ["debutant", "progression_lente"]
+        },
+        { 
+          "label": "3-4 fois : je veux des résultats visibles", 
+          "value": "modere", 
+          "tags": ["regulier", "equilibre"]
+        },
+        { 
+          "label": "5+ fois : mode entraînement intensif", 
+          "value": "intensif", 
+          "tags": ["avance", "performance"]
+        }
+      ]
+    },
+    {
+      "id": "duree_seance",
+      "label": "⏳ Combien de temps peux-tu consacrer par séance ?",
+      "type": "single",
+      "options": [
+        { 
+          "label": "15-20 min : session express", 
+          "value": "court", 
+          "tags": ["rapide", "efficace"]
+        },
+        { 
+          "label": "30-45 min : séance standard", 
+          "value": "moyen", 
+          "tags": ["equilibre", "complet"]
+        },
+        { 
+          "label": "1h+ : je prends le temps", 
+          "value": "long", 
+          "tags": ["approfondi", "volume"]
+        }
+      ]
+    }
+  ],
+  "profil_deduction": {
+    "description": "Règles pour déduire le niveau global et le profil postural à partir des réponses.",
+    "exemples": [
+      "Si niveau_activite = 'debutant' ET contexte_quotidien = 'assis' ET douleurs contient 'dos_bas' ou 'dos_haut' => Profil: Débutant sédentaire avec risques posturaux",
+      "Si niveau_activite = 'intermediaire' ET sports_pratiques ne contient pas 'aucun' ET douleurs = 'aucune' => Profil: Sportif régulier en bonne santé",
+      "Si niveau_activite = 'avance' ET frequence_souhaitee = 'intensif' ET objectifs contient 'performance' => Profil: Athlète confirmé orienté performance",
+      "Si objectifs contient 'posture' OU 'reeducation' => Focus sur prévention et corrections posturales",
+      "Si contexte_quotidien = 'assis' => Importance du renforcement lombaire et étirements chaîne postérieure",
+      "Si douleurs contient plusieurs zones => Approche progressive et adaptée avec focus mobilité"
+    ],
+    "tags_niveau": {
+      "debutant": ["faible_experience", "sedentaire", "progression_lente"],
+      "intermediaire": ["experience_moyenne", "regulier", "equilibre"],
+      "avance": ["experience_forte", "assidu", "performance", "intensif"]
+    }
+  }
+}

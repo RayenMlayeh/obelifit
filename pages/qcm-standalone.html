@@ -1,0 +1,751 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ObéliFit - CTO de ta santé posturale</title>
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    body {
+        font-family: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        min-height: 100vh;
+        color: #fff;
+        padding: 20px;
+    }
+
+    .qcm-wrapper {
+        max-width: 800px;
+        margin: 0 auto;
+    }
+
+    .header {
+        text-align: center;
+        margin-bottom: 30px;
+        animation: fadeInDown 0.6s ease;
+    }
+
+    .header h1 {
+        font-size: 2.5rem;
+        margin-bottom: 10px;
+        text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+    }
+
+    .header p {
+        font-size: 1.1rem;
+        opacity: 0.9;
+    }
+
+    .header-logo {
+        font-size: 2rem;
+        margin-bottom: 15px;
+    }
+
+    .header-logo span {
+        color: #FFB703;
+        font-weight: 700;
+    }
+
+    .progress-container {
+        background: rgba(255,255,255,0.2);
+        border-radius: 20px;
+        padding: 8px;
+        margin-bottom: 30px;
+        backdrop-filter: blur(10px);
+    }
+
+    .progress-bar {
+        height: 10px;
+        background: linear-gradient(90deg, #FFB703, #FB8500);
+        border-radius: 10px;
+        transition: width 0.4s ease;
+        width: 0%;
+    }
+
+    .progress-text {
+        text-align: center;
+        margin-top: 8px;
+        font-size: 0.9rem;
+        font-weight: 500;
+    }
+
+    #qcm-container {
+        animation: fadeIn 0.5s ease;
+    }
+
+    .question-card {
+        background: rgba(255,255,255,0.1);
+        backdrop-filter: blur(20px);
+        border-radius: 20px;
+        padding: 40px;
+        box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+        border: 1px solid rgba(255,255,255,0.2);
+    }
+
+    .question-header h2 {
+        font-size: 1.8rem;
+        margin-bottom: 10px;
+        line-height: 1.4;
+    }
+
+    .question-type {
+        font-size: 0.9rem;
+        opacity: 0.8;
+        margin-bottom: 30px;
+        font-style: italic;
+    }
+
+    .options-container {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+        margin-bottom: 30px;
+    }
+
+    .option-label {
+        background: rgba(255,255,255,0.15);
+        padding: 18px 20px;
+        border-radius: 12px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        display: flex;
+        align-items: center;
+        border: 2px solid transparent;
+    }
+
+    .option-label:hover {
+        background: rgba(255,255,255,0.25);
+        transform: translateX(5px);
+    }
+
+    .option-label input[type="radio"],
+    .option-label input[type="checkbox"] {
+        width: 20px;
+        height: 20px;
+        margin-right: 15px;
+        cursor: pointer;
+        accent-color: #FFB703;
+    }
+
+    .option-label:has(input:checked) {
+        background: rgba(255, 183, 3, 0.3);
+        border-color: #FFB703;
+        transform: translateX(5px);
+    }
+
+    .option-text {
+        font-size: 1.05rem;
+        line-height: 1.4;
+    }
+
+    .navigation-buttons {
+        display: flex;
+        gap: 15px;
+        justify-content: flex-end;
+        flex-wrap: wrap;
+    }
+
+    .btn {
+        padding: 14px 32px;
+        border-radius: 12px;
+        border: none;
+        font-size: 1.05rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        font-family: inherit;
+    }
+
+    .btn-primary {
+        background: linear-gradient(135deg, #FFB703, #FB8500);
+        color: #000;
+        box-shadow: 0 4px 15px rgba(255, 183, 3, 0.4);
+    }
+
+    .btn-primary:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 20px rgba(255, 183, 3, 0.6);
+    }
+
+    .btn-secondary {
+        background: rgba(255,255,255,0.2);
+        color: #fff;
+        border: 2px solid rgba(255,255,255,0.3);
+    }
+
+    .btn-secondary:hover {
+        background: rgba(255,255,255,0.3);
+    }
+
+    .profile-summary {
+        animation: fadeIn 0.6s ease;
+    }
+
+    .summary-title {
+        text-align: center;
+        font-size: 2.2rem;
+        margin-bottom: 30px;
+        text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+    }
+
+    .profile-card {
+        background: rgba(255,255,255,0.1);
+        backdrop-filter: blur(20px);
+        border-radius: 20px;
+        padding: 40px;
+        box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+        border: 1px solid rgba(255,255,255,0.2);
+    }
+
+    .profile-card h3 {
+        font-size: 1.8rem;
+        margin-bottom: 25px;
+        text-align: center;
+    }
+
+    .profile-section {
+        margin-bottom: 30px;
+    }
+
+    .profile-section h4 {
+        font-size: 1.3rem;
+        margin-bottom: 15px;
+        color: #FFB703;
+    }
+
+    .profile-section ul {
+        list-style: none;
+        padding-left: 0;
+    }
+
+    .profile-section li {
+        padding: 10px 0;
+        border-bottom: 1px solid rgba(255,255,255,0.1);
+        font-size: 1.05rem;
+    }
+
+    .profile-section li:last-child {
+        border-bottom: none;
+    }
+
+    .cta-section {
+        text-align: center;
+        margin-top: 35px;
+        padding-top: 30px;
+        border-top: 2px solid rgba(255,255,255,0.2);
+    }
+
+    .cta-text {
+        font-size: 1.2rem;
+        margin-bottom: 20px;
+        font-weight: 500;
+    }
+
+    .btn-large {
+        padding: 18px 40px;
+        font-size: 1.15rem;
+        display: inline-block;
+        text-decoration: none;
+        margin-bottom: 15px;
+    }
+
+    .error-message {
+        text-align: center;
+        padding: 60px 20px;
+    }
+
+    .error-message h2 {
+        font-size: 2rem;
+        margin-bottom: 20px;
+    }
+
+    @keyframes fadeIn {
+        from {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    @keyframes fadeInDown {
+        from {
+            opacity: 0;
+            transform: translateY(-20px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    @media (max-width: 768px) {
+        body {
+            padding: 15px;
+        }
+
+        .header h1 {
+            font-size: 1.8rem;
+        }
+
+        .header p {
+            font-size: 1rem;
+        }
+
+        .question-card {
+            padding: 25px;
+        }
+
+        .question-header h2 {
+            font-size: 1.4rem;
+        }
+
+        .option-label {
+            padding: 14px 16px;
+        }
+
+        .option-text {
+            font-size: 0.95rem;
+        }
+
+        .btn {
+            padding: 12px 24px;
+            font-size: 0.95rem;
+        }
+
+        .navigation-buttons {
+            justify-content: center;
+        }
+
+        .profile-card {
+            padding: 25px;
+        }
+    }
+</style>
+</head>
+<body>
+
+<div class="qcm-wrapper">
+    <div class="header">
+        <h1 class="header-logo">Obéli<span>Fit</span></h1>
+        <h2>🚀 CTO de ta santé posturale</h2>
+        <p>Comme les Gaulois résistent à l'envahisseur, résiste aux mauvaises postures ! Configure ton profil sportif et débugge tes douleurs comme un vrai guerrier du village !</p>
+    </div>
+
+    <div class="progress-container">
+        <div class="progress-bar" id="progress-bar"></div>
+        <div class="progress-text" id="progress-text">Question 1 / 8</div>
+    </div>
+
+    <div id="qcm-container">
+        <!-- Le contenu du QCM sera injecté ici par JavaScript -->
+    </div>
+</div>
+
+<script>
+// Données du QCM intégrées directement dans le HTML pour éviter les problèmes CORS
+const qcmData = {
+  "title": "Questionnaire - CTO de ta santé posturale",
+  "description": "Configure ton profil sportif comme un système : détecte tes bugs posturaux, optimise tes performances et déploie la meilleure version de toi-même !",
+  "questions": [
+    {
+      "id": "niveau_activite",
+      "label": "🔧 Quel est ton niveau d'activité physique actuel ?",
+      "type": "single",
+      "options": [
+        { "label": "Mode veille : je bouge très peu, je suis souvent assis(e)", "value": "debutant", "tags": ["faible_experience", "sedentaire"] },
+        { "label": "Version 1.0 : je fais un peu de sport, de temps en temps", "value": "intermediaire", "tags": ["experience_moyenne", "regulier"] },
+        { "label": "Version 2.0 optimisée : je m'entraîne régulièrement (3-5x/semaine)", "value": "avance", "tags": ["experience_forte", "assidu"] }
+      ]
+    },
+    {
+      "id": "contexte_quotidien",
+      "label": "💻 Quelle est ta configuration quotidienne ?",
+      "type": "single",
+      "options": [
+        { "label": "Mode bureau : je travaille assis(e) la plupart du temps", "value": "assis", "tags": ["sedentaire", "risque_dos", "posture_assise"] },
+        { "label": "Mode hybride : je bouge un peu, mais je reste souvent statique", "value": "mixte", "tags": ["moderement_actif", "posture_variable"] },
+        { "label": "Mode actif : je suis debout ou en mouvement une bonne partie de la journée", "value": "debout", "tags": ["actif", "fatigue_jambes"] }
+      ]
+    },
+    {
+      "id": "sports_pratiques",
+      "label": "🏃 Quels modules sportifs as-tu déjà installés ? (choix multiples)",
+      "type": "multi",
+      "options": [
+        { "label": "Musculation / Fitness", "value": "musculation", "tags": ["force", "renforcement"] },
+        { "label": "Course à pied / Running", "value": "running", "tags": ["cardio", "impact", "endurance"] },
+        { "label": "Yoga / Pilates", "value": "yoga", "tags": ["souplesse", "posture", "equilibre"] },
+        { "label": "Sports collectifs (foot, basket, volley...)", "value": "collectif", "tags": ["explosif", "lateral", "cardio"] },
+        { "label": "Natation", "value": "natation", "tags": ["cardio", "faible_impact", "complet"] },
+        { "label": "Cyclisme / Vélo", "value": "velo", "tags": ["cardio", "endurance", "bas_du_corps"] },
+        { "label": "Aucun pour le moment", "value": "aucun", "tags": ["debutant"] }
+      ]
+    },
+    {
+      "id": "objectifs",
+      "label": "🎯 Quels sont tes objectifs principaux ? (choix multiples)",
+      "type": "multi",
+      "options": [
+        { "label": "Débugger mes douleurs et améliorer ma posture", "value": "posture", "tags": ["prevention", "posture", "reeducation"] },
+        { "label": "Optimiser mes performances sportives", "value": "performance", "tags": ["progression", "intensite"] },
+        { "label": "Installer de nouvelles routines bien-être", "value": "bien_etre", "tags": ["equilibre", "sante_mentale"] },
+        { "label": "Compiler de la masse musculaire", "value": "masse", "tags": ["force", "volume"] },
+        { "label": "Lancer un programme perte de poids", "value": "perte_poids", "tags": ["cardio", "deficit"] },
+        { "label": "Patcher mes blessures et récupérer", "value": "reeducation", "tags": ["prevention", "guerison", "reeducation"] }
+      ]
+    },
+    {
+      "id": "douleurs",
+      "label": "⚠️ As-tu des zones sensibles ou des alertes système ? (choix multiples)",
+      "type": "multi",
+      "options": [
+        { "label": "Bas du dos (lombaires)", "value": "dos_bas", "tags": ["douleur", "dos", "lombaires"] },
+        { "label": "Haut du dos / Nuque", "value": "dos_haut", "tags": ["douleur", "cervicales", "trapeze"] },
+        { "label": "Épaules", "value": "epaules", "tags": ["douleur", "articulation", "haut_corps"] },
+        { "label": "Genoux", "value": "genoux", "tags": ["douleur", "articulation", "bas_corps"] },
+        { "label": "Chevilles / Pieds", "value": "chevilles", "tags": ["douleur", "stabilite", "bas_corps"] },
+        { "label": "Hanches", "value": "hanches", "tags": ["douleur", "mobilite", "bas_corps"] },
+        { "label": "Aucune douleur particulière", "value": "aucune", "tags": ["sain"] }
+      ]
+    },
+    {
+      "id": "materiel",
+      "label": "🛠️ Quel équipement as-tu dans ton setup ?",
+      "type": "multi",
+      "options": [
+        { "label": "Tapis de sol", "value": "tapis", "tags": ["confort", "base"] },
+        { "label": "Haltères / Poids", "value": "halteres", "tags": ["resistance", "force"] },
+        { "label": "Bandes élastiques", "value": "bandes", "tags": ["resistance", "mobilite"] },
+        { "label": "Barre de traction", "value": "barre_traction", "tags": ["force", "haut_corps"] },
+        { "label": "Swiss ball / Ballon", "value": "ballon", "tags": ["equilibre", "gainage"] },
+        { "label": "Rien du tout, juste mon corps !", "value": "aucun", "tags": ["poids_corps"] }
+      ]
+    },
+    {
+      "id": "frequence_souhaitee",
+      "label": "⏱️ Combien de fois par semaine veux-tu t'entraîner ?",
+      "type": "single",
+      "options": [
+        { "label": "1-2 fois : je démarre en douceur", "value": "leger", "tags": ["debutant", "progression_lente"] },
+        { "label": "3-4 fois : je veux des résultats visibles", "value": "modere", "tags": ["regulier", "equilibre"] },
+        { "label": "5+ fois : mode entraînement intensif", "value": "intensif", "tags": ["avance", "performance"] }
+      ]
+    },
+    {
+      "id": "duree_seance",
+      "label": "⏳ Combien de temps peux-tu consacrer par séance ?",
+      "type": "single",
+      "options": [
+        { "label": "15-20 min : session express", "value": "court", "tags": ["rapide", "efficace"] },
+        { "label": "30-45 min : séance standard", "value": "moyen", "tags": ["equilibre", "complet"] },
+        { "label": "1h+ : je prends le temps", "value": "long", "tags": ["approfondi", "volume"] }
+      ]
+    }
+  ]
+};
+
+// Variables globales
+let currentQuestionIndex = 0;
+let userResponses = {};
+
+// Initialisation
+document.addEventListener("DOMContentLoaded", () => {
+    initQCM();
+});
+
+function initQCM() {
+    displayQuestion(currentQuestionIndex);
+    updateProgress();
+}
+
+function displayQuestion(index) {
+    if (!qcmData || index >= qcmData.questions.length) return;
+
+    const question = qcmData.questions[index];
+    const container = document.getElementById('qcm-container');
+    
+    if (!container) {
+        console.error('Container qcm-container introuvable');
+        return;
+    }
+
+    let html = `
+        <div class="question-card">
+            <div class="question-header">
+                <h2>${question.label}</h2>
+                <p class="question-type">${question.type === 'single' ? 'Une seule réponse' : 'Plusieurs réponses possibles'}</p>
+            </div>
+            <form id="current-question-form" class="options-container">
+    `;
+
+    question.options.forEach((option, idx) => {
+        const inputType = question.type === 'single' ? 'radio' : 'checkbox';
+        const inputName = question.type === 'single' ? 'answer' : `answer_${idx}`;
+        
+        html += `
+            <label class="option-label">
+                <input type="${inputType}" 
+                       name="${inputName}" 
+                       value="${option.value}" 
+                       data-tags='${JSON.stringify(option.tags)}'>
+                <span class="option-text">${option.label}</span>
+            </label>
+        `;
+    });
+
+    html += `
+            </form>
+            <div class="navigation-buttons">
+                ${index > 0 ? '<button id="prev-btn" class="btn btn-secondary">← Précédent</button>' : ''}
+                <button id="next-btn" class="btn btn-primary">${index < qcmData.questions.length - 1 ? 'Suivant →' : 'Terminer ✓'}</button>
+            </div>
+        </div>
+    `;
+
+    container.innerHTML = html;
+
+    // Restaurer les réponses précédentes si elles existent
+    const questionId = question.id;
+    if (userResponses[questionId]) {
+        const savedResponses = Array.isArray(userResponses[questionId]) 
+            ? userResponses[questionId] 
+            : [userResponses[questionId]];
+        
+        savedResponses.forEach(value => {
+            const input = container.querySelector(`input[value="${value}"]`);
+            if (input) input.checked = true;
+        });
+    }
+
+    // Event listeners
+    const nextBtn = document.getElementById('next-btn');
+    const prevBtn = document.getElementById('prev-btn');
+
+    if (nextBtn) {
+        nextBtn.addEventListener('click', handleNext);
+    }
+    if (prevBtn) {
+        prevBtn.addEventListener('click', handlePrevious);
+    }
+}
+
+function handleNext() {
+    const question = qcmData.questions[currentQuestionIndex];
+    const form = document.getElementById('current-question-form');
+    
+    // Valider et récupérer les réponses
+    if (question.type === 'single') {
+        const selected = form.querySelector('input:checked');
+        if (!selected) {
+            alert('⚠️ Merci de sélectionner une réponse avant de continuer.');
+            return;
+        }
+        userResponses[question.id] = selected.value;
+    } else {
+        const selected = Array.from(form.querySelectorAll('input:checked'));
+        if (selected.length === 0) {
+            alert('⚠️ Merci de sélectionner au moins une réponse avant de continuer.');
+            return;
+        }
+        userResponses[question.id] = selected.map(input => input.value);
+    }
+
+    // Passer à la question suivante ou terminer
+    if (currentQuestionIndex < qcmData.questions.length - 1) {
+        currentQuestionIndex++;
+        displayQuestion(currentQuestionIndex);
+        updateProgress();
+    } else {
+        finishQCM();
+    }
+}
+
+function handlePrevious() {
+    if (currentQuestionIndex > 0) {
+        currentQuestionIndex--;
+        displayQuestion(currentQuestionIndex);
+        updateProgress();
+    }
+}
+
+function updateProgress() {
+    const progressBar = document.getElementById('progress-bar');
+    const progressText = document.getElementById('progress-text');
+    
+    if (progressBar && progressText) {
+        const progress = ((currentQuestionIndex + 1) / qcmData.questions.length) * 100;
+        progressBar.style.width = `${progress}%`;
+        progressText.textContent = `Question ${currentQuestionIndex + 1} / ${qcmData.questions.length}`;
+    }
+}
+
+function finishQCM() {
+    // Calculer le profil utilisateur
+    const profile = calculateProfile(userResponses);
+    
+    // Sauvegarder dans localStorage
+    localStorage.setItem('userProfile', JSON.stringify(profile));
+    localStorage.setItem('qcmCompleted', 'true');
+
+    // Afficher le résumé
+    displayProfileSummary(profile);
+}
+
+function calculateProfile(responses) {
+    const profile = {
+        responses: responses,
+        niveau_activite: responses.niveau_activite || 'debutant',
+        contexte_quotidien: responses.contexte_quotidien || 'assis',
+        sports_pratiques: responses.sports_pratiques || [],
+        objectifs: responses.objectifs || [],
+        douleurs: responses.douleurs || [],
+        materiel: responses.materiel || [],
+        frequence_souhaitee: responses.frequence_souhaitee || 'leger',
+        duree_seance: responses.duree_seance || 'moyen',
+        timestamp: new Date().toISOString()
+    };
+
+    // Calculer le niveau global basé sur plusieurs critères
+    let niveauScore = 0;
+    
+    if (profile.niveau_activite === 'avance') niveauScore += 3;
+    else if (profile.niveau_activite === 'intermediaire') niveauScore += 2;
+    else niveauScore += 1;
+
+    if (profile.frequence_souhaitee === 'intensif') niveauScore += 2;
+    else if (profile.frequence_souhaitee === 'modere') niveauScore += 1;
+
+    if (profile.sports_pratiques.length > 2) niveauScore += 1;
+
+    // Déterminer le niveau global
+    if (niveauScore >= 5) {
+        profile.niveau_global = 'avance';
+    } else if (niveauScore >= 3) {
+        profile.niveau_global = 'intermediaire';
+    } else {
+        profile.niveau_global = 'debutant';
+    }
+
+    // Ajouter des tags de profil
+    profile.tags = [];
+    
+    if (profile.contexte_quotidien === 'assis') {
+        profile.tags.push('risque_postural', 'besoin_mobilite');
+    }
+    
+    if (profile.douleurs.length > 0 && !profile.douleurs.includes('aucune')) {
+        profile.tags.push('adaptation_necessaire', 'focus_prevention');
+    }
+    
+    if (profile.objectifs.includes('posture') || profile.objectifs.includes('reeducation')) {
+        profile.tags.push('focus_posture');
+    }
+
+    return profile;
+}
+
+function displayProfileSummary(profile) {
+    const container = document.getElementById('qcm-container');
+    
+    let niveauEmoji = '🌱';
+    let niveauText = 'Débutant';
+    if (profile.niveau_global === 'intermediaire') {
+        niveauEmoji = '⚡';
+        niveauText = 'Intermédiaire';
+    } else if (profile.niveau_global === 'avance') {
+        niveauEmoji = '🚀';
+        niveauText = 'Avancé';
+    }
+
+    let html = `
+        <div class="profile-summary">
+            <h2 class="summary-title">✅ Profil configuré avec succès !</h2>
+            
+            <div class="profile-card">
+                <h3>${niveauEmoji} Ton niveau : ${niveauText}</h3>
+                
+                <div class="profile-section">
+                    <h4>📊 Ton profil en bref :</h4>
+                    <ul>
+                        <li><strong>Contexte quotidien :</strong> ${getContextLabel(profile.contexte_quotidien)}</li>
+                        <li><strong>Fréquence souhaitée :</strong> ${getFrequenceLabel(profile.frequence_souhaitee)}</li>
+                        <li><strong>Durée par séance :</strong> ${getDureeLabel(profile.duree_seance)}</li>
+    `;
+
+    if (profile.sports_pratiques.length > 0 && !profile.sports_pratiques.includes('aucun')) {
+        html += `<li><strong>Sports pratiqués :</strong> ${profile.sports_pratiques.join(', ')}</li>`;
+    }
+
+    if (profile.objectifs.length > 0) {
+        html += `<li><strong>Objectifs principaux :</strong> ${profile.objectifs.length} objectif(s) identifié(s)</li>`;
+    }
+
+    if (profile.douleurs.length > 0 && !profile.douleurs.includes('aucune')) {
+        html += `<li><strong>⚠️ Zones sensibles :</strong> ${profile.douleurs.length} zone(s) à surveiller</li>`;
+    }
+
+    html += `
+                    </ul>
+                </div>
+                
+                <div class="cta-section">
+                    <p class="cta-text">🎯 Prêt(e) à débugger ta posture et optimiser ta santé ?</p>
+                    <a href="instructions-example.html" class="btn btn-primary btn-large">Découvrir mes exercices personnalisés</a>
+                    <button id="restart-qcm" class="btn btn-secondary">🔄 Refaire le questionnaire</button>
+                </div>
+            </div>
+        </div>
+    `;
+
+    container.innerHTML = html;
+
+    // Event listener pour recommencer
+    document.getElementById('restart-qcm').addEventListener('click', () => {
+        currentQuestionIndex = 0;
+        userResponses = {};
+        localStorage.removeItem('userProfile');
+        localStorage.removeItem('qcmCompleted');
+        displayQuestion(0);
+        updateProgress();
+    });
+}
+
+// Fonctions utilitaires pour les labels
+function getContextLabel(value) {
+    const labels = {
+        'assis': 'Principalement assis(e)',
+        'mixte': 'Mixte (assis/debout)',
+        'debout': 'Principalement debout'
+    };
+    return labels[value] || value;
+}
+
+function getFrequenceLabel(value) {
+    const labels = {
+        'leger': '1-2 fois/semaine',
+        'modere': '3-4 fois/semaine',
+        'intensif': '5+ fois/semaine'
+    };
+    return labels[value] || value;
+}
+
+function getDureeLabel(value) {
+    const labels = {
+        'court': '15-20 minutes',
+        'moyen': '30-45 minutes',
+        'long': '1h ou plus'
+    };
+    return labels[value] || value;
+}
+</script>
+
+</body>
+</html>

@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Character - ObéliFit</title>
-    <link rel="stylesheet" href="../css/caractere.css">
+    <link rel="stylesheet" href="css/caractere.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
@@ -20,7 +20,6 @@
         </div>
 
         <div class="exercise-right">
-            <h3>Exercices recommandés</h3>
             <div id="exercise-list"></div>
         </div>
     </div>
@@ -96,9 +95,11 @@
             c.exercises.forEach(ex => {
                 container.innerHTML += `
                     <div class="exercise-card">
-                        <h4>${ex.title}</h4>
-                        <p>${ex.instructions}</p>
-                        <img src="${ex.img}" alt="${ex.title}">
+                        <img src="${ex.img}" alt="${ex.title}" onerror="this.style.display='none'">
+                        <div>
+                            <h4>${ex.title}</h4>
+                            <p>${ex.instructions}</p>
+                        </div>
                     </div>
                 `;
             });
