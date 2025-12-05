@@ -36,9 +36,9 @@
                 img: "img/asterix.jpg",
                 intro: "Astérix est agile, rapide et ingénieux. Il t’aide à devenir plus vif et précis !",
                 exercises: [
-                    { title: "Pose du Chat-Vache", instructions: "Alternez dos rond et dos creux pendant 30 secondes.", img: "https://i.imgur.com/6yJwJ8b.png" },
-                    { title: "Étirement du Cobra", instructions: "Soulevez votre buste lentement en gardant les hanches au sol.", img: "https://i.imgur.com/7ZpYV4v.png" },
-                    { title: "Posture de l’Arbre", instructions: "Tenez en équilibre pendant 20 secondes.", img: "https://i.imgur.com/2QM3XvS.png" }
+                    { title: "Pose du Chat-Vache", instructions: "Alternez dos rond et dos creux pendant 30 secondes." },
+                    { title: "Étirement du Cobra", instructions: "Soulevez votre buste lentement en gardant les hanches au sol." },
+                    { title: "Posture de l'Arbre", instructions: "Tenez en équilibre pendant 20 secondes." }
                 ]
             },
             obelix: {
@@ -46,9 +46,9 @@
                 img: "img/obelix.jpg",
                 intro: "Obélix est fort, puissant et inarrêtable. Il t’aide à développer ta force !",
                 exercises: [
-                    { title: "Sprints sur Place", instructions: "Courez sur place à pleine vitesse pendant 20 secondes.", img: "https://i.imgur.com/1H2rDcE.png" },
-                    { title: "Montées de Genoux", instructions: "Levez les genoux à hauteur de hanches rapidement.", img: "https://i.imgur.com/VW1h6Nc.png" },
-                    { title: "Burpees", instructions: "Descendez en planche puis sautez puissamment.", img: "https://i.imgur.com/dOq0pMd.png" }
+                    { title: "Sprints sur Place", instructions: "Courez sur place à pleine vitesse pendant 20 secondes." },
+                    { title: "Montées de Genoux", instructions: "Levez les genoux à hauteur de hanches rapidement." },
+                    { title: "Burpees", instructions: "Descendez en planche puis sautez puissamment." }
                 ]
             },
             panoramix: {
@@ -56,9 +56,9 @@
                 img: "img/panoramix.jpg",
                 intro: "Panoramix est sage et précis. Il t’aide à renforcer ton corps avec contrôle.",
                 exercises: [
-                    { title: "Shadow Boxing", instructions: "Enchaînez 1-2-1-2 en restant léger sur les appuis.", img: "https://i.imgur.com/Xq4tPui.png" },
-                    { title: "Pompes Boxeur", instructions: "Faites une pompe puis un crochet gauche/droite.", img: "https://i.imgur.com/v2E4UqT.png" },
-                    { title: "Squat Punch", instructions: "Descendez en squat puis envoyez deux coups de poing rapides.", img: "https://i.imgur.com/aVt38N8.png" }
+                    { title: "Shadow Boxing", instructions: "Enchaînez 1-2-1-2 en restant léger sur les appuis." },
+                    { title: "Pompes Boxeur", instructions: "Faites une pompe puis un crochet gauche/droite." },
+                    { title: "Squat Punch", instructions: "Descendez en squat puis envoyez deux coups de poing rapides." }
                 ]
             },
             abraracourcix: {
@@ -66,9 +66,9 @@
                 img: "img/abraracourcix.jpg",
                 intro: "Abraracourcix est courageux et endurant. Il t’aide à améliorer ton équilibre et ta mobilité !",
                 exercises: [
-                    { title: "Balance Arabesque", instructions: "Levez une jambe derrière vous et inclinez le buste.", img: "https://i.imgur.com/V5mEaCk.png" },
-                    { title: "Tendu Latéral", instructions: "Faites glisser votre pied sur le côté avec contrôle.", img: "https://i.imgur.com/oSmcCz2.png" },
-                    { title: "Twist Dance", instructions: "Tournez le buste à droite puis à gauche avec fluidité.", img: "https://i.imgur.com/4OX7bYB.png" }
+                    { title: "Balance Arabesque", instructions: "Levez une jambe derrière vous et inclinez le buste." },
+                    { title: "Tendu Latéral", instructions: "Faites glisser votre pied sur le côté avec contrôle." },
+                    { title: "Twist Dance", instructions: "Tournez le buste à droite puis à gauche avec fluidité." }
                 ]
             },
             idefix: {
@@ -76,9 +76,9 @@
                 img: "img/idéfix.jpg",
                 intro: "Idéfix est petit mais très agile. Il t’aide à travailler ton gainage et ta stabilité !",
                 exercises: [
-                    { title: "Mountain Climbers", instructions: "Ramenez vos genoux vers la poitrine en position gainage.", img: "https://i.imgur.com/kpSgLfS.png" },
-                    { title: "Planche Latérale", instructions: "Tenez la position sur un bras pendant 20 secondes.", img: "https://i.imgur.com/8g56h7M.png" },
-                    { title: "Squat + Montée", instructions: "Faites un squat puis montez un genou vers le coude opposé.", img: "https://i.imgur.com/ncZ1uHy.png" }
+                    { title: "Mountain Climbers", instructions: "Ramenez vos genoux vers la poitrine en position gainage." },
+                    { title: "Planche Latérale", instructions: "Tenez la position sur un bras pendant 20 secondes." },
+                    { title: "Squat + Montée", instructions: "Faites un squat puis montez un genou vers le coude opposé." }
                 ]
             }
         };
@@ -95,7 +95,6 @@
             c.exercises.forEach(ex => {
                 container.innerHTML += `
                     <div class="exercise-card">
-                        <img src="${ex.img}" alt="${ex.title}" onerror="this.style.display='none'">
                         <div>
                             <h4>${ex.title}</h4>
                             <p>${ex.instructions}</p>
